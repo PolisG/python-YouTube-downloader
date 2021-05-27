@@ -6,7 +6,7 @@
  **Tip:** *Don't forget to Add Python to PATH (check box)*
  ![python_checkbox](https://user-images.githubusercontent.com/57621362/119864319-30e4e580-bf23-11eb-8c85-87fb428b5b32.jpg)
  
-### Download ZIP
+### Download ZIP from github
  1. Download zip and extract files
  2. Move Downloader.py inside the python folder, where the python exe is.  Example 'C:\Users\username\AppData\Local\Programs\Python\Python38'
  3. Create a folder wherever you want and move inside there the 'YouTube Downloader.bat'
@@ -36,7 +36,8 @@
  ```
  
 ### Run the app
- Now you should be able to run the app 'YouTube Downloader.bat' without any problem!
- ![YouTube Downloader](https://user-images.githubusercontent.com/57621362/119863570-5fae8c00-bf22-11eb-91a1-c8ff11eba981.jpg)
+ Now you should be able to run the app 'YouTube Downloader.bat' without any problem! 
+ ![YouTube Downloader](https://user-images.githubusercontent.com/57621362/119894041-c6dd3800-bf44-11eb-940b-df0a274956b5.jpg)
+
  
 ## Enjoy!
