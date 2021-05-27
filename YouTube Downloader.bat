@@ -1,2 +1,2 @@
-"C:\Users\theodoros\AppData\Local\Programs\Python\Python38\python.exe" "I:\yt-mp3-downloader\Downloader.py"
+"C:\Users\theodoros\AppData\Local\Programs\Python\Python38\python.exe" "C:\Users\theodoros\AppData\Local\Programs\Python\Python38\Downloader.py"
 pause

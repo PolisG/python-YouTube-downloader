@@ -9,10 +9,10 @@ from tkinter import filedialog
 root= tk.Tk()
 root.title('YouTube downloader')
 
+folder_path = StringVar()
+
 def select_folder():
         # Select and return folder path
-        global folder_path
-        folder_path = StringVar()
         folder_selected = filedialog.askdirectory(parent=root, initialdir="/")
         if folder_selected:
             folder_path.set(folder_selected)
@@ -50,10 +50,33 @@ def download_mp4():
         label2.config(text='Save to: '+folder_path.get(), font=('Arial', 11))
 
         ydl_opts = {
-            'format': 'bestvideo+bestaudio',
+            'format': 'bestvideo[ext=mp4]+bestaudio[ext=m4a]',
             'videoformat': 'mp4',
             'outtmpl': folder + '/%(title)s.%(ext)s',
-            #'subtitleslangs': 'en',
+            'writesubtitles': True,
+            'subtitle': '--write-sub --sub-lang en',
+            'postprocessors': [{
+                'key': 'FFmpegVideoConvertor',
+                'preferedformat': 'mp4',
+            }],
+        }
+
+        with youtube_dl.YoutubeDL(ydl_opts) as ydl:
+            ydl.download([link])
+
+def download_auto_subs():
+        link = entry1.get()
+        entry1.delete(0, tk.END)
+        folder = folder_path.get()
+        folder_path.set(os.path.abspath(os.getcwd()))
+        label2.config(text='Save to: '+folder_path.get(), font=('Arial', 11))
+
+        ydl_opts = {
+            'format': 'bestvideo[ext=mp4]+bestaudio[ext=m4a]',
+            'videoformat': 'mp4',
+            'outtmpl': folder + '/%(title)s.%(ext)s',
+            'writesubtitles': True,
+            'subtitle': '--write-auto-sub --convert-subs=srt --skip-download --sub-lang en',
             'postprocessors': [{
                 'key': 'FFmpegVideoConvertor',
                 'preferedformat': 'mp4',
@@ -93,7 +116,10 @@ canvas1.create_window(320, 220, window=button2)
 button3 = tk.Button(root, text=' Download mp4 ', command=download_mp4, bg='lightskyblue2', font=('Arial', 11, 'bold'))
 canvas1.create_window(320, 260, window=button3)
 
-button4 = tk.Button(root, text='Exit Application', command=root.destroy, bg='light slate gray', font=('Arial', 11, 'bold'))
-canvas1.create_window(320, 320, window=button4)
+button4 = tk.Button(root, text=' Download auto subs ', command=download_auto_subs, bg='lightskyblue2', font=('Arial', 11, 'bold'))
+canvas1.create_window(490, 260, window=button4)
+
+button5 = tk.Button(root, text='Exit Application', command=root.destroy, bg='light slate gray', font=('Arial', 11, 'bold'))
+canvas1.create_window(320, 320, window=button5)
 
 root.mainloop()
