@@ -2,7 +2,7 @@
  Download videos from YouTube to mp3 or mp4 format
  
 ### Install python
- Download and install python version 3 for your OS [python](https://www.python.org/downloads/) 
+ Download and install python version 3 for your OS [python](https://www.python.org/downloads/)  
  **Tip:** *Don't forget to Add Python to PATH (check box)* 
  ![python_checkbox](https://user-images.githubusercontent.com/57621362/119864319-30e4e580-bf23-11eb-8c85-87fb428b5b32.jpg)
  
