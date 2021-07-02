@@ -10,6 +10,15 @@ root= tk.Tk()
 root.title('YouTube downloader')
 
 folder_path = StringVar()
+kbps_select = StringVar()
+
+option_kbps = [
+    '192',
+    '256',
+    '320',
+]
+
+kbps_select.set(option_kbps[2])
 
 def select_folder():
         # Select and return folder path
@@ -24,8 +33,10 @@ def select_folder():
 
 def download_mp3():
         link = entry1.get()
-        entry1.delete(0, tk.END)
         folder = folder_path.get()
+        kbps = kbps_select.get()
+        
+        entry1.delete(0, tk.END)
         folder_path.set(os.path.abspath(os.getcwd()))
         label2.config(text='Save to: '+folder_path.get(), font=('Arial', 11))
         
@@ -35,7 +46,7 @@ def download_mp3():
             'postprocessors': [{
                 'key': 'FFmpegExtractAudio',
                 'preferredcodec': 'mp3',
-                'preferredquality': '320',
+                'preferredquality': kbps,
             }],
         }
 
@@ -63,7 +74,7 @@ def download_mp4():
 
         with youtube_dl.YoutubeDL(ydl_opts) as ydl:
             ydl.download([link])
-
+'''
 def download_auto_subs():
         link = entry1.get()
         entry1.delete(0, tk.END)
@@ -72,19 +83,20 @@ def download_auto_subs():
         label2.config(text='Save to: '+folder_path.get(), font=('Arial', 11))
 
         ydl_opts = {
-            'format': 'bestvideo[ext=mp4]+bestaudio[ext=m4a]',
-            'videoformat': 'mp4',
+            #'format': 'bestvideo[ext=mp4]+bestaudio[ext=m4a]',
+            #'videoformat': 'mp4',
             'outtmpl': folder + '/%(title)s.%(ext)s',
             'writesubtitles': True,
-            'subtitle': '--write-auto-sub --convert-subs=srt --skip-download --sub-lang en',
-            'postprocessors': [{
-                'key': 'FFmpegVideoConvertor',
-                'preferedformat': 'mp4',
-            }],
+            'subtitle': '--write-auto-sub --convert-subs=srt --skip-download --sub-lang=en',
+            #'postprocessors': [{
+                #'key': 'FFmpegVideoConvertor',
+                #'preferedformat': 'mp4',
+            #}],
         }
 
         with youtube_dl.YoutubeDL(ydl_opts) as ydl:
             ydl.download([link])
+'''
 
 # Create GUI screen.
 canvas1 = tk.Canvas(root, width = 640, height = 360)
@@ -113,11 +125,16 @@ canvas1.create_window(320, 180, window=label3)
 button2 = tk.Button(root, text=' Download mp3 ',command=download_mp3, bg='palegreen2', font=('Arial', 11, 'bold'))
 canvas1.create_window(320, 220, window=button2)
 
+# Create Dropdown Menu
+drop1 = tk.OptionMenu(root, kbps_select, *option_kbps)
+drop1.pack()
+canvas1.create_window(440, 220, window=drop1)
+
 button3 = tk.Button(root, text=' Download mp4 ', command=download_mp4, bg='lightskyblue2', font=('Arial', 11, 'bold'))
 canvas1.create_window(320, 260, window=button3)
 
-button4 = tk.Button(root, text=' Download auto subs ', command=download_auto_subs, bg='lightskyblue2', font=('Arial', 11, 'bold'))
-canvas1.create_window(490, 260, window=button4)
+#button4 = tk.Button(root, text=' Download auto subs ', command=download_auto_subs, bg='lightskyblue2', font=('Arial', 11, 'bold'))
+#canvas1.create_window(490, 260, window=button4)
 
 button5 = tk.Button(root, text='Exit Application', command=root.destroy, bg='light slate gray', font=('Arial', 11, 'bold'))
 canvas1.create_window(320, 320, window=button5)
