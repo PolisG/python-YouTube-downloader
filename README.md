@@ -35,7 +35,7 @@
  ```
  
 ### Run the program
- Now you should be able to run the program from the 'Downloader.exe' or the YouTube Downloader.bat' without any problem! 
+ Now you should be able to run the program from the 'Downloader.exe' or the 'YouTube Downloader.bat' without any problem!  
  ![YouTube Downloader](https://user-images.githubusercontent.com/57621362/124270473-eb7c8f00-db44-11eb-99ea-de8bd9a7335b.jpg)
  
  
